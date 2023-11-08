@@ -35,3 +35,13 @@ exports.createIngredient = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.addIngredientToRecipe = async (req, res, next) => {
+  try {
+    await req.ingredients.updateOne({ $push: { recipies: req.recipe } });
+    await req.recipe.updateOne({ $push: { ingredients: req.ingredient } });
+    res.status(204).end();
+  } catch (error) {
+    next(error);
+  }
+};
