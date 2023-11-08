@@ -45,3 +45,12 @@ exports.DeleteRecipe = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.GetOneRecipe = async (req, res, next) => {
+  try {
+    const recipe = await req.recipe;
+    res.status(200).json(recipe);
+  } catch (error) {
+    next(error);
+  }
+};
