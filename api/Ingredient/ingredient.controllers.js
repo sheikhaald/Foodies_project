@@ -29,6 +29,9 @@ exports.getOneingredient = async (req, res, next) => {
 
 exports.createIngredient = async (req, res, next) => {
   try {
+    if (req.file) {
+      req.body.image = req.file.path;
+    }
     const newIngredient = await Ingredient.create(req.body);
     res.status(201).json(newIngredient);
   } catch (error) {
