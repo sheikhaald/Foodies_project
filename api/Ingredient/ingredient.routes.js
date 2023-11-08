@@ -6,6 +6,7 @@ const {
   findIngredient,
   addIngredientToRecipe,
 } = require("./ingredient.controllers");
+const { findRecipe } = require("../Recipe/recipe.controllers");
 const router = express.Router();
 
 router.param("ingID", async (req, res, next, ingID) => {
@@ -18,6 +19,7 @@ router.param("RecipeId", async (req, res, next, RecipeId) => {
   req.recipe = recipe;
   next();
 });
+
 router.post("/", createIngredient);
 router.get("/", getALLingredient);
 router.get("/:ingID", getOneingredient);
