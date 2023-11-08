@@ -4,6 +4,7 @@ const {
   CreateNewRecipe,
   UpdateRecipe,
   DeleteRecipe,
+  findRecipe,
 } = require("./recipe.controllers");
 const router = express.Router();
 
