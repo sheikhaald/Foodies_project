@@ -1,9 +1,10 @@
 const { model, Schema } = require("mongoose");
 
-const CategorySchema = new Schema({
-  name: String,
-  age: String,
-  movies: [{ type: Schema.Types.ObjectId, ref: "Movie" }],
+const userSchema = new Schema({
+  username: String,
+  password: String,
+  email: String,
+  recipes: [{ type: Schema.Types.ObjectId, ref: "recipe" }],
 });
 
-module.exports = model("Category", CategorySchema);
+module.exports = model("user", recipeSchema);
