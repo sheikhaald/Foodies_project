@@ -1,10 +1,10 @@
 const { model, Schema } = require("mongoose");
 
-const userSchema = new Schema({
+const UserSchema = new Schema({
   username: String,
   password: String,
   email: String,
-  recipes: [{ type: Schema.Types.ObjectId, ref: "recipe" }],
+  recipies: [{ type: Schema.Types.ObjectId, ref: "Recipe" }],
 });
 
-module.exports = model("user", recipeSchema);
+module.exports = model("User", UserSchema);

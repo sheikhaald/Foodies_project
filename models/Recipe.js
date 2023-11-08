@@ -5,9 +5,9 @@ const RecipeSchema = new Schema({
   description: String,
   cookTime: String,
   image: String,
-  category: [{ type: Schema.Types.ObjectId, ref: "Category" }],
-  user: [{ type: Schema.Types.ObjectId, ref: "User" }],
-  ingredient: [{ type: Schema.Types.ObjectId, ref: "Ingredient" }],
+  category: { type: Schema.Types.ObjectId, ref: "Category" },
+  user: { type: Schema.Types.ObjectId, ref: "User" },
+  ingredients: [{ type: Schema.Types.ObjectId, ref: "Ingredient" }],
 });
 
 module.exports = model("Recipe", RecipeSchema);
