@@ -4,8 +4,13 @@ require("dotenv").config();
 const UserRouter = require("./api/User/user.routes");
 
 const app = express();
-// Define routes here
+const RecipeRouter = require("./api/Recipe/recipe.routes");
 app.use(express.json());
+
+// Define routes here
+
+app.use("/recipe", RecipeRouter);
+
 //Connect to the DataBase
 connectDB();
 
