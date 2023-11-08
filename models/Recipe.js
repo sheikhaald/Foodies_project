@@ -1,9 +1,13 @@
 const { model, Schema } = require("mongoose");
 
-const CategorySchema = new Schema({
+const RecipeSchema = new Schema({
   name: String,
-  age: String,
-  movies: [{ type: Schema.Types.ObjectId, ref: "Movie" }],
+  description: String,
+  cookTime: String,
+  image: String,
+  category: [{ type: Schema.Types.ObjectId, ref: "Category" }],
+  user: [{ type: Schema.Types.ObjectId, ref: "User" }],
+  ingredient: [{ type: Schema.Types.ObjectId, ref: "Ingredient" }],
 });
 
-module.exports = model("Category", CategorySchema);
+module.exports = model("Recipe", RecipeSchema);
