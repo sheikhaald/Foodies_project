@@ -6,6 +6,7 @@ const {
   DeleteRecipe,
   findRecipe,
 } = require("./recipe.controllers");
+const upload = require("../../middleware/multer");
 const router = express.Router();
 
 router.param("RecipeId", async (req, res, next, RecipeId) => {
@@ -15,7 +16,7 @@ router.param("RecipeId", async (req, res, next, RecipeId) => {
 });
 
 router.get("/", getAllRecipes);
-router.post("/", CreateNewRecipe);
+router.post("/", upload.single("image"), CreateNewRecipe);
 router.put("/:RecipeId", UpdateRecipe);
 router.delete("/:RecipeId", DeleteRecipe);
 

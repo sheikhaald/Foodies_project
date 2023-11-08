@@ -3,16 +3,30 @@ const connectDB = require("./database");
 require("dotenv").config();
 const UserRouter = require("./api/User/user.routes");
 const IngredientRouter = require("./api/Ingredient/ingredient.routes");
-
+const path = require("path");
 const app = express();
 const RecipeRouter = require("./api/Recipe/recipe.routes");
+const morgan = require("morgan");
+const cors = require("cors");
+const { NotFound } = require("./middleware/NotFound");
+const { ErrorHandler } = require("./middleware/ErrorHandler");
+
+app.use(cors());
+app.use(morgan("dev"));
 app.use(express.json());
+app.use("/media", express.static(path.join(__dirname, "media")));
 
 // Define routes here
 
 app.use("/recipe", RecipeRouter);
 app.use("/User", UserRouter);
 app.use("/Ingredients", IngredientRouter);
+
+// Not Found Path
+app.use(NotFound);
+
+// Error Handler
+app.use(ErrorHandler);
 
 //Connect to the DataBase
 connectDB();
