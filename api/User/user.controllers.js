@@ -49,7 +49,7 @@ exports.UpdateUser = async (req, res, next) => {
 exports.signin = async (req, res, next) => {
   try {
     const token = generateToken(req.user);
-    res.json({ token });
+    res.status(201).json({ token });
   } catch (error) {
     next(error);
   }
