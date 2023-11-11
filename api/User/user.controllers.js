@@ -1,6 +1,7 @@
 const User = require("../../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const hashPassword = async (password) => {
   return bcrypt.hash(password, 10);
@@ -11,16 +12,18 @@ const generateToken = (user) => {
     _id: user._id,
     username: user.username,
   };
-  const token = jwt.sign(payload, "mySuperSecretPrivateKey", {
+  const token = jwt.sign(payload, process.env.PRIVATE_KEY, {
     expiresIn: "5d",
   });
+
+  return token;
 };
 
-exports.CreateUser = async (req, res, next) => {
+exports.createUser = async (req, res, next) => {
   try {
     req.body.password = await hashPassword(req.body.password);
     const newUser = await User.create(req.body);
-    const token = generateToken(user);
+    const token = generateToken(newUser);
 
     res.status(201).json({ token });
   } catch (error) {
@@ -37,7 +40,7 @@ exports.getAllUsers = async (req, res, next) => {
   }
 };
 
-exports.UpdateUser = async (req, res, next) => {
+exports.updateUser = async (req, res, next) => {
   try {
     await User.updateOne(req.body);
     res.status(204).end();
