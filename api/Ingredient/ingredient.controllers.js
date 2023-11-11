@@ -10,7 +10,7 @@ exports.findIngredient = async (ingID, next) => {
   }
 };
 
-exports.getALLingredient = async (req, res, next) => {
+exports.getAllIngredient = async (req, res, next) => {
   try {
     const getALL = await Ingredient.find();
     res.status(200).json(getALL);
@@ -19,7 +19,7 @@ exports.getALLingredient = async (req, res, next) => {
   }
 };
 
-exports.getOneingredient = async (req, res, next) => {
+exports.getOneIngredient = async (req, res, next) => {
   try {
     const ingredient = await req.ingredient;
     res.status(200).json(ingredient);

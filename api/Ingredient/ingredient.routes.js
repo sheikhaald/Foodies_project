@@ -1,8 +1,8 @@
 const express = require("express");
 const {
   createIngredient,
-  getALLingredient,
-  getOneingredient,
+  getAllIngredient,
+  getOneIngredient,
   findIngredient,
   addIngredientToRecipe,
 } = require("./ingredient.controllers");
@@ -21,8 +21,8 @@ router.param("RecipeId", async (req, res, next, RecipeId) => {
 });
 
 router.post("/", createIngredient);
-router.get("/", getALLingredient);
-router.get("/:ingID", getOneingredient);
+router.get("/", getAllIngredient);
+router.get("/:ingID", getOneIngredient);
 router.put("/:ingID/:RecipeId", addIngredientToRecipe);
 
 module.exports = router;

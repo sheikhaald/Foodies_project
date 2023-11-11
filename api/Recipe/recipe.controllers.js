@@ -19,7 +19,7 @@ exports.getAllRecipes = async (req, res, next) => {
   }
 };
 
-exports.CreateNewRecipe = async (req, res, next) => {
+exports.createNewRecipe = async (req, res, next) => {
   try {
     const NewRecipe = await Recipe.create(req.body);
     res.status(200).json(NewRecipe);
@@ -28,7 +28,7 @@ exports.CreateNewRecipe = async (req, res, next) => {
   }
 };
 
-exports.UpdateRecipe = async (req, res, next) => {
+exports.updateRecipe = async (req, res, next) => {
   try {
     await req.recipe.updateOne(req.body);
     res.status(204).end();
@@ -37,7 +37,7 @@ exports.UpdateRecipe = async (req, res, next) => {
   }
 };
 
-exports.DeleteRecipe = async (req, res, next) => {
+exports.deleteRecipe = async (req, res, next) => {
   try {
     await req.recipe.deleteOne();
     res.status(204).end();
@@ -46,7 +46,7 @@ exports.DeleteRecipe = async (req, res, next) => {
   }
 };
 
-exports.GetOneRecipe = async (req, res, next) => {
+exports.getOneRecipe = async (req, res, next) => {
   try {
     const recipe = await req.recipe;
     res.status(200).json(recipe);

@@ -1,11 +1,11 @@
 const express = require("express");
 const {
   getAllRecipes,
-  CreateNewRecipe,
-  UpdateRecipe,
-  DeleteRecipe,
+  createNewRecipe,
+  updateRecipe,
+  deleteRecipe,
   findRecipe,
-  GetOneRecipe,
+  getOneRecipe,
 } = require("./recipe.controllers");
 const upload = require("../../middleware/multer");
 const router = express.Router();
@@ -17,9 +17,9 @@ router.param("RecipeId", async (req, res, next, RecipeId) => {
 });
 
 router.get("/", getAllRecipes);
-router.post("/", upload.single("image"), CreateNewRecipe);
-router.put("/:RecipeId", UpdateRecipe);
-router.delete("/:RecipeId", DeleteRecipe);
-router.get("/:RecipeId", GetOneRecipe);
+router.post("/", upload.single("image"), createNewRecipe);
+router.put("/:RecipeId", updateRecipe);
+router.delete("/:RecipeId", deleteRecipe);
+router.get("/:RecipeId", getOneRecipe);
 
 module.exports = router;
