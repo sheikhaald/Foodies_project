@@ -8,12 +8,14 @@ const {
 const passport = require("passport");
 const router = express.Router();
 
-router.post("/", createUser); //sign up
+router.post("/", createUser); //Register
+
 router.get("/", getAllUsers);
 router.put("/:useID", updateUser);
+
 router.post(
   "/signin",
   passport.authenticate("local", { session: false }),
   signin
-);
+); // Login
 module.exports = router;
