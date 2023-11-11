@@ -12,12 +12,13 @@ const cors = require("cors");
 const { NotFound } = require("./middleware/NotFound");
 const { ErrorHandler } = require("./middleware/ErrorHandler");
 const localStrategy = require("./middleware/passport");
+const CategoryRouter = require("./api/Category/category.routes");
 
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use("/media", express.static(path.join(__dirname, "media")));
-app.use(passport.initialize);
+app.use(passport.initialize());
 passport.use("local", localStrategy);
 
 // Define routes here
@@ -25,6 +26,7 @@ passport.use("local", localStrategy);
 app.use("/recipe", RecipeRouter);
 app.use("/User", UserRouter);
 app.use("/Ingredients", IngredientRouter);
+app.use("/Categories", CategoryRouter);
 
 // Not Found Path
 app.use(NotFound);
