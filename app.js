@@ -23,7 +23,7 @@ passport.use("local", localStrategy);
 
 // Define routes here
 
-app.use("/recipe", RecipeRouter);
+app.use("/Recipe", RecipeRouter);
 app.use("/User", UserRouter);
 app.use("/Ingredients", IngredientRouter);
 app.use("/Categories", CategoryRouter);

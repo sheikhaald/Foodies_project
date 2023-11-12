@@ -8,7 +8,7 @@ const {
 const passport = require("passport");
 const router = express.Router();
 
-router.post("/", createUser); //Register
+router.post("/signup", createUser); //Register
 
 router.get("/", getAllUsers);
 router.put("/:useID", updateUser);
