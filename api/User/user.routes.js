@@ -6,9 +6,10 @@ const {
   signin,
 } = require("./user.controllers");
 const passport = require("passport");
+const upload = require("../../middleware/multer");
 const router = express.Router();
 
-router.post("/signup", createUser); //Register
+router.post("/signup", upload.single("image"), createUser); //Register
 
 router.get("/", getAllUsers);
 router.put("/:useID", updateUser);
