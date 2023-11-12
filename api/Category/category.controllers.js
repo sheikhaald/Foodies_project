@@ -45,3 +45,14 @@ exports.getOneCategory = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.addRecipeToCategory = async (req, res, next) => {
+  try {
+    await req.category.updateOne({ $push: { recipies: req.recipe } });
+    await req.recipe.updateOne({ $push: { category: req.category } });
+
+    res.status(204).end();
+  } catch (error) {
+    next(error);
+  }
+};
