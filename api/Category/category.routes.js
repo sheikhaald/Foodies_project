@@ -8,6 +8,7 @@ const {
   addRecipeToCategory,
 } = require("./category.controllers");
 const { findRecipe } = require("../Recipe/recipe.controllers");
+const upload = require("../../middleware/multer");
 const router = express.Router();
 
 router.param("CategoryId", async (req, res, next, CategoryId) => {
@@ -21,6 +22,7 @@ router.param("RecipeId", async (req, res, next, RecipeId) => {
   req.recipe = recipe;
   next();
 });
+router.post("/", upload.single("image"), addCategory);
 
 router.get("/", getAllCategories);
 router.post("/", addCategory);

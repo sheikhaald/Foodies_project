@@ -21,6 +21,9 @@ exports.getAllCategories = async (req, res, next) => {
 
 exports.addCategory = async (req, res, next) => {
   try {
+    if (req.file) {
+      req.body.image = req.file.path.replace("\\", "/");
+    }
     const newCategory = await Category.create(req.body);
     res.status(200).json(newCategory);
   } catch (error) {
