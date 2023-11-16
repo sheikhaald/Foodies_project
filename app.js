@@ -11,7 +11,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const { NotFound } = require("./middleware/NotFound");
 const { ErrorHandler } = require("./middleware/ErrorHandler");
-const localStrategy = require("./middleware/passport");
+const { localStrategy, jwtStrategy } = require("./middleware/passport");
 const CategoryRouter = require("./api/Category/category.routes");
 
 app.use(cors());
@@ -20,6 +20,7 @@ app.use(express.json());
 app.use("/media", express.static(path.join(__dirname, "media")));
 app.use(passport.initialize());
 passport.use("local", localStrategy);
+passport.use("jwt", jwtStrategy);
 
 // Define routes here
 

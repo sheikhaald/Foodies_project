@@ -6,6 +6,7 @@ const {
   deleteRecipe,
   findRecipe,
   getOneRecipe,
+  getRecipesByCategory,
 } = require("./recipe.controllers");
 const upload = require("../../middleware/multer");
 const router = express.Router();
@@ -21,5 +22,6 @@ router.post("/", upload.single("image"), createNewRecipe);
 router.put("/:RecipeId", updateRecipe);
 router.delete("/:RecipeId", deleteRecipe);
 router.get("/:RecipeId", getOneRecipe);
+router.get("/recipes/:catigoryId", getRecipesByCategory);
 
 module.exports = router;

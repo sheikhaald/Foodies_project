@@ -57,3 +57,12 @@ exports.signin = async (req, res, next) => {
     next(error);
   }
 };
+exports.getMyProfile = async (req, res, next) => {
+  try {
+    console.log("we are here");
+    const user = await User.findById(req.user._id);
+    res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
+};
